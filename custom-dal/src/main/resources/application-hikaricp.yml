@@ -1,0 +1,22 @@
+# hikaricp数据源
+spring:
+  datasource:
+    hikari:
+      driver-class-name: ${hikaricp.driver.class.name}
+      jdbc-url: ${hikaricp.url}
+      username: ${hikaricp.username}
+      password: ${hikaricp.password}
+      # 最小空闲连接数
+      minimum-idle: ${hikaricp.mimmum}
+      # 最大连接数
+      maximum-pool-size: ${hikaricp.maxmum}
+      # 连接允许在池中闲置的最长时间
+      idle-timeout: ${hikaricp.idle.timeout}
+      # 池中连接最长生命周期
+      max-lifetime: ${hikaricp.max.lifetime}
+      # 检测连接是否可用的SQL语句
+      connection-test-query: ${hikaricp.connection.test.query}
+      # 连接检测最大时间
+      validation-timeout: ${hikaricp.validation.timeout}
+      # 连接超时时间
+      connection-timeout: ${hikaricp.connection.timeout}

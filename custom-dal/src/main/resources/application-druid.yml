@@ -1,0 +1,58 @@
+# druid数据库连接池配置
+spring:
+  datasource:
+    druid:
+      driver-class-name: ${druid.driver.class.name}
+      url: ${druid.url}
+      username: ${druid.username}
+      password: ${druid.password}
+      # 连接池初始化大小
+      initial-size: ${druid.initial.size}
+      # 连接池最小连接数
+      min-idle: ${druid.min.idle}
+      # 连接池最大连接数
+      max-active: ${druid.max.active}
+      # 获取连接池最大等待超时时间，6秒后未获取连接直接超时
+      max-wait: ${druid.max.wait}
+      # destroy线程每6秒进行一次检测是否需要收缩连接池以及test-while-idle检测标准
+      time-between-eviction-runs-millis: ${druid.between.eviction}
+      # 连接池最小生存时间空闲超过这个时间会被收回
+      min-evictable-idle-time-millis: ${druid.min.evictable}
+      # 连接池最大生存时间
+      max-evictable-idle-time-millis: ${druid.max.evictable}
+      # 是否开启statement缓存(mysql下关闭)
+      pool-prepared-statements: ${druid.pool.prepared.statements}
+      # 检测连接是否有效的SQL语句
+      validation-query: ${druid.validation.query}
+      # 获取连接时检测连接是否可用(生产不开启影响效率)
+      test-on-borrow: ${druid.test.on.borrow}
+      # 归还连接时检测连接是否可用(生产不开启影响效率)
+      test-on-return: ${druid.test.on.return}
+      # 申请连接时定时检测获取的连接是否可用(时间依据为time-between-eviction-runs-millis)
+      test-while-idle: ${druid.test.while.idle}
+      # 程序没有close连接且空闲时长超过minEvictableIdleTimeMillis,则会执行validationQuery指定的SQL,以保证该程序连接不会池kill掉,其范围不超过minIdle指定的连接个数
+      keep-alive: ${druid.keep.alive}
+      # 数据库连接属性
+      connection-properties: ${druid.connection-properties}
+      # 插件标示
+      filters: ${druid.filters}
+      filter:
+        stat:
+          enabled: true
+          merge-sql: true
+          slow-sql-millis: ${druid.slow.sql.millis}
+          db-type: mysql
+        wall:
+          enabled: true
+          config:
+            # 禁止select *
+            select-all-column-allow: false
+        config:
+          enabled: true
+      stat-view-servlet:
+        enabled: true
+        allow: 127.0.0.1
+        reset-enable: false
+        url-pattern: /druid/*
+        login-password: 123456
+        login-username: zhouxiaojie

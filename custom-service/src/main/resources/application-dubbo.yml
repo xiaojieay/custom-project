@@ -1,0 +1,25 @@
+dubbo:
+  application:
+    name: custom-project-facade
+    owner: xiaojie
+    organization: custom-project
+    logger: ${dubbo.app.logger}
+    parameters:
+      namespace: ${dubbo.namespace}
+      group: ${dubbo.group}
+  registry:
+    address: ${dubbo.address}
+    timeout: ${dubbo.reg.timeout}
+    check: false
+    file: ${dubbo.reg.file}
+    register: true
+    simplified: true
+  protocol:
+    name: dubbo
+    port: 20880
+    buffer: ${dubbo.pro.buffer}
+  provider:
+    retries: ${dubbo.pro.retries}
+    timeout: ${dubbo.pro.timeout}
+  scan:
+    base-packages: com.github.jay.custom.project.custom.service.impl

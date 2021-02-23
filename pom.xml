@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 构建工具之maven -->
+    <!-- 父级 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.2</version>
+        <relativePath/>
+    </parent>
+
+    <!-- 子类module -->
+    <modules>
+        <module>custom-dal</module>
+        <module>custom-web</module>
+        <module>custom-common</module>
+        <module>custom-service</module>
+        <module>custom-facade</module>
+    </modules>
+
+    <groupId>com.github.jay.custom.project</groupId>
+    <artifactId>custom-project</artifactId>
+    <version>0.0.1</version>
+    <name>custom-project</name>
+    <description>自定义项目</description>
+
+    <!-- 打包方式pom -->
+    <!-- pom:用在顶层工程中，用于jar版本的控制 -->
+    <packaging>pom</packaging>
+
+    <!-- 公用配置 -->
+    <properties>
+        <java.version>1.8</java.version>
+        <mybatis.springboot.version>2.1.4</mybatis.springboot.version>
+        <druid.springboot.version>1.2.4</druid.springboot.version>
+        <custom.project.version>0.0.1</custom.project.version>
+        <nacos.version>1.4.0</nacos.version>
+        <dubbo.springboot.version>2.7.8</dubbo.springboot.version>
+        <nacos.springboot.version>0.2.7</nacos.springboot.version>
+        <threeten.version>1.5.0</threeten.version>
+    </properties>
+
+    <!-- 配置所有子模块公用包，即使子模块不引用也会被打包 -->
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <!-- 配置子模块按需使用的包，方便管理jar，只有子模块引用才会被打包 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.springboot.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.springboot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.jay.custom.project</groupId>
+                <artifactId>custom-dal</artifactId>
+                <version>${custom.project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.jay.custom.project</groupId>
+                <artifactId>custom-service</artifactId>
+                <version>${custom.project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.jay.custom.project</groupId>
+                <artifactId>custom-common</artifactId>
+                <version>${custom.project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.jay.custom.project</groupId>
+                <artifactId>custom-facade</artifactId>
+                <version>${custom.project.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.alibaba.nacos/nacos-client -->
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-spring-boot-starter -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.springboot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.alibaba.boot/nacos-discovery-spring-boot-starter -->
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-discovery-spring-boot-starter</artifactId>
+                <version>${nacos.springboot.version}</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.threeten/threeten-extra -->
+            <!-- JDK1.8之后处理时间 -->
+            <dependency>
+                <groupId>org.threeten</groupId>
+                <artifactId>threeten-extra</artifactId>
+                <version>${threeten.version}</version>
+            </dependency>
+
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 插件模块 -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <!-- 标示执行主类 -->
+                    <configuration>
+                        <mainClass>com.github.jay.custom.project.custom.web.CustomWebApplication</mainClass>
+                        <classifier>exec</classifier>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
+
+        <!--
+            dependencies与dependencyManagement区别
+
+                dependencyManagement作为最外层引用的Jar需要子模块主动引入，否则打包时不会被打包进去
+
+                dependencies作为最外层引用的Jar会自动被子模块引用，打包时也会被打包进去
+        -->
+
+        <!--
+            SNAPSHOT与RELEASE版本区别
+
+                SNAPSHOT:快照版本，引用快照版本构建时当其版本变更后会自动引入最新的快照版本(本地开发使用)
+
+                RELEASE:发布版本，引用发布版本构建时当其版本变更后不会自动引入最新的版本，需要同步切换版本(用于构建测试、生产环境Jar)
+        -->
+
+        <!--
+            Jar冲突原因
+
+                最近依赖原则(项目R引入两个version不同的Jar，如果第一个Jar的引用路径为R -> C -> X【1.0】，第二个Jar引用路径R -> A -> B -> X【2.0】），此时内部只会引用1.0版本，就会导致引用2.0版本的项目启动可能存在某些问题
+
+                最先声明优先(项目R引入两个version不同的Jar，并且他们的引用路径长度相同此时最先引用的Jar的版本就是最终项目引用的版本)
+
+            Jar冲突解决方式
+
+                找到引起冲突的Jar版本，通过exclusion标签将该Jar排除掉即可(通常排除低版本的Jar)
+        -->
+
+        <!--
+            mvn clean package:将项目打包放入target目录下【其他项目无法依赖，打出的包未放在本地仓库中】
+
+            mvn clean install:将项目打包并且放入本地maven仓库中
+
+            mvn clean deploy:将项目打包放入远程maven仓库中
+        -->
+
+        <!--
+            maven常用命令
+
+                -D(指定参数，例如-Dmaven.test.skip=true【跳过测试】)
+
+                -e(展示maven命令执行过程中出现的错误信息)
+
+                -U(强制更新版本的依赖)
+        -->

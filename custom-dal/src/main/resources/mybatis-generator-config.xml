@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--mybatis的代码生成器相关配置-->
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 一个数据库一个context,context的子元素必须按照它给出的顺序
+        property*,plugin*,commentGenerator?,jdbcConnection,javaTypeResolver?,
+        javaModelGenerator,sqlMapGenerator?,javaClientGenerator?,table+
+    -->
+    <context id="myContext" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <!-- 这个插件给生成的Java模型对象增加了equals和hashCode方法 -->
+        <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>-->
+        <!-- 注释 -->
+        <commentGenerator>
+            <!-- 是否不生成注释 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 不希望生成的注释中包含时间戳 -->
+            <!--<property name="suppressDate" value="true"/>-->
+            <!-- 添加 db 表中字段的注释，只有suppressAllComments为false时才生效-->
+            <!--<property name="addRemarkComments" value="true"/>-->
+        </commentGenerator>
+
+        <!-- jdbc连接 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/custom-project?useUnicode=true;characterEncoding=utf-8;useSSL=false"
+                        userId="root"
+                        password="root">
+            <!--高版本的 mysql-connector-java 需要设置 nullCatalogMeansCurrent=true-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!--是否使用bigDecimal，默认false。
+                false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer
+                true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal-->
+            <property name="forceBigDecimals" value="true"/>
+            <!--默认false
+                false，将所有 JDBC 的时间类型解析为 java.util.Date
+                true，将 JDBC 的时间类型按如下规则解析
+                    DATE	                -> java.time.LocalDate
+                    TIME	                -> java.time.LocalTime
+                    TIMESTAMP               -> java.time.LocalDateTime
+                    TIME_WITH_TIMEZONE  	-> java.time.OffsetTime
+                    TIMESTAMP_WITH_TIMEZONE	-> java.time.OffsetDateTime
+                -->
+            <!--<property name="useJSR310Types" value="false"/>-->
+        </javaTypeResolver>
+
+        <!-- 生成实体类地址 -->
+        <javaModelGenerator targetPackage="com.github.jay.custom.project.custom.dal.entity"
+                            targetProject="src/main/java">
+            <!-- 是否让 schema 作为包的后缀，默认为false -->
+            <!--<property name="enableSubPackages" value="false"/>-->
+            <!-- 是否针对string类型的字段在set方法中进行修剪，默认false -->
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 生成Mapper.xml文件 -->
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources/">
+            <!--<property name="enableSubPackages" value="false"/>-->
+        </sqlMapGenerator>
+
+        <!-- 生成 XxxMapper.java 接口-->
+        <javaClientGenerator targetPackage="com.github.jay.custom.project.custom.dal.dao" targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <!--<property name="enableSubPackages" value="false"/>-->
+        </javaClientGenerator>
+
+        <table tableName="flight_info" domainObjectName="FlightInfoDO"
+               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="true"
+               enableUpdateByExample="true" selectByExampleQueryId="true">
+            <!--是否使用实际列名,默认为false-->
+            <!--<property name="useActualColumnNames" value="false" />-->
+        </table>
+    </context>
+</generatorConfiguration>
