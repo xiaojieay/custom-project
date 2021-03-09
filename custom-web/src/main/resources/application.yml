@@ -8,8 +8,5 @@ spring:
     name: custom-project
   profiles:
     include: dubbo,druid,hikaricp,mybatis
-nacos:
-  discovery:
-    server-addr: ${nacos.server.addr}
 logging:
   config: ${sys.log.path}

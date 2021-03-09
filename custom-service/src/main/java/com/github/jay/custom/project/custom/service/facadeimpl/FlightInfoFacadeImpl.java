@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @date 2020/11/3 10:54 下午
  */
-@DubboService(version = "1.0", interfaceClass = FlightInfoFacade.class)
+@DubboService(version = "1.0", interfaceName = "flightInfoFacade",group = "custom-project")
 public class FlightInfoFacadeImpl implements FlightInfoFacade {
 
     @Resource(name = "flightInfoService")

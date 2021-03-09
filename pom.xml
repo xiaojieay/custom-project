@@ -125,21 +125,13 @@
                 </exclusions>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/com.alibaba.boot/nacos-discovery-spring-boot-starter -->
-            <dependency>
-                <groupId>com.alibaba.boot</groupId>
-                <artifactId>nacos-discovery-spring-boot-starter</artifactId>
-                <version>${nacos.springboot.version}</version>
-            </dependency>
-
-            <!-- https://mvnrepository.com/artifact/org.threeten/threeten-extra -->
-            <!-- JDK1.8之后处理时间 -->
-            <dependency>
-                <groupId>org.threeten</groupId>
-                <artifactId>threeten-extra</artifactId>
-                <version>${threeten.version}</version>
-            </dependency>
-
+            <!--            &lt;!&ndash; https://mvnrepository.com/artifact/org.threeten/threeten-extra &ndash;&gt;-->
+            <!--            &lt;!&ndash; JDK1.8之后处理时间 &ndash;&gt;-->
+            <!--            <dependency>-->
+            <!--                <groupId>org.threeten</groupId>-->
+            <!--                <artifactId>threeten-extra</artifactId>-->
+            <!--                <version>${threeten.version}</version>-->
+            <!--            </dependency>-->
 
         </dependencies>
     </dependencyManagement>

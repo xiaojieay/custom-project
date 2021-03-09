@@ -4,7 +4,7 @@ import com.github.jay.custom.project.custom.dal.dao.FlightInfoMapper;
 import com.github.jay.custom.project.custom.dal.entity.FlightInfoDO;
 import com.github.jay.custom.project.custom.service.FlightInfoService;
 import com.github.jay.custom.project.custom.service.entity.FlightInfo;
-import org.apache.dubbo.config.annotation.DubboService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -19,8 +19,7 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @date 2020/10/30 11:09 上午
  */
-@DubboService(interfaceName = "flightInfoService", version = "1.0.0", group = "custom-project")
-@org.springframework.stereotype.Service("flightInfoService")
+@Service("flightInfoService")
 public class FlightInfoServiceImpl implements FlightInfoService {
 
     @Resource

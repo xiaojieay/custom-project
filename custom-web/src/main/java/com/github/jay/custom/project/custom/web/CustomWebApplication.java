@@ -1,8 +1,9 @@
 package com.github.jay.custom.project.custom.web;
 
-import com.alibaba.nacos.spring.context.annotation.discovery.EnableNacosDiscovery;
 import com.github.jay.custom.project.custom.common.constant.SystemConstant;
 import com.github.jay.custom.project.custom.web.util.SystemConfigCenterUtils;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubboConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +22,7 @@ import java.util.Properties;
  */
 @SpringBootApplication(scanBasePackages = "com.github.jay.custom.project",
     exclude = {DataSourceAutoConfiguration.class})
-@EnableNacosDiscovery
+@EnableDubboConfig
 public class CustomWebApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomWebApplication.class);

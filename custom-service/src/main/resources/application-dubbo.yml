@@ -4,15 +4,18 @@ dubbo:
     owner: xiaojie
     organization: custom-project
     logger: ${dubbo.app.logger}
-    parameters:
-      namespace: ${dubbo.namespace}
-      group: ${dubbo.group}
   registry:
     address: ${dubbo.address}
     timeout: ${dubbo.reg.timeout}
     check: false
     file: ${dubbo.reg.file}
     register: true
+    parameters:
+      namespace: ${dubbo.namespace}
+      group: ${dubbo.group}
+    meta-data:
+      group: ${dubbo.group}
+      namespace: ${dubbo.namespace}
     simplified: true
   protocol:
     name: dubbo
@@ -21,5 +24,8 @@ dubbo:
   provider:
     retries: ${dubbo.pro.retries}
     timeout: ${dubbo.pro.timeout}
+    parameters:
+      group: ${dubbo.group}
+      namespace: ${dubbo.namespace}
   scan:
-    base-packages: com.github.jay.custom.project.custom.service.impl
+    base-packages: com.github.jay.custom.project.custom.service.facadeimpl
